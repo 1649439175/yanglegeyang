@@ -56,6 +56,19 @@
 
 <script type="text/javascript">
     (function () {
+        // 添加错误处理
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('Error: ' + msg + '\nURL: ' + url + '\nLine: ' + lineNo + '\nColumn: ' + columnNo + '\nError object: ' + JSON.stringify(error));
+            return false;
+        };
+
+        // 添加资源加载错误处理
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'SCRIPT' || e.target.tagName === 'LINK') {
+                console.error('Resource loading error:', e.target.src || e.target.href);
+            }
+        }, true);
+
         // open web debugger console
         if (typeof VConsole !== 'undefined') {
             window.vConsole = new VConsole();
@@ -71,11 +84,20 @@
                 domScript.removeEventListener('load', scriptLoaded, false);
                 cb && cb();
             };
+            function scriptError(e) {
+                console.error('Script load error:', moduleName, e);
+            }
             var domScript = document.createElement('script');
             domScript.async = true;
             domScript.src = moduleName;
             domScript.addEventListener('load', scriptLoaded, false);
+            domScript.addEventListener('error', scriptError, false);
             document.body.appendChild(domScript);
+        }
+
+        // 修改settings中的服务器地址为本地路径
+        if (window._CCSettings) {
+            window._CCSettings.server = './';
         }
 
         loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.c7c6e.js', function () {
