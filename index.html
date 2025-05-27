@@ -2,10 +2,53 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>羊了个娘 - 重定向中...</title>
+    <title>羊了个娘 - 游戏加载中</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="refresh" content="0; url=yang-game-master/yang-game-master/index.html">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3dc5de;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .message {
+            text-align: center;
+            max-width: 80%;
+        }
+        a {
+            color: #3dc5de;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <p>正在跳转到游戏页面，如果没有自动跳转，请<a href="yang-game-master/yang-game-master/index.html">点击这里</a>.</p>
+    <div class="loader"></div>
+    <div class="message">
+        <h2>羊了个娘 - 游戏加载中</h2>
+        <p>如果没有自动跳转，请<a href="yang-game-master/yang-game-master/index.html">点击这里</a>进入游戏。</p>
+    </div>
 </body>
 </html> 
